@@ -13,7 +13,14 @@ jobs:
   windows-echo:
     runs-on: windows-latest
     steps:
-      - name: Say hello
+      - name: Say OS
         run: |
           echo "Running on Windows"
+          echo "Runner OS: $RUNNER_OS"
+  macos-echo:
+    runs-on: macos-latest
+    steps:
+      - name: Say OS
+        run: |
+          echo "Running on macOS"
           echo "Runner OS: $RUNNER_OS"
