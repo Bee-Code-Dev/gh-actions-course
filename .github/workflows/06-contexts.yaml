@@ -36,9 +36,9 @@ jobs:
       - name: Retrive variables
         run: |
           echo "Variable value: ${{ vars.MY_VAR }}"
-      - name: Display environment variables
+      - name: Print environment variables
         env:
-           : "OVERRIDDEN 3"
+          MY_OVERRITTEN_VAR: "OVERRIDDEN 3"
         run: |
           echo "Workflow Variable: ${{ env.MY_WORKFLOW_VAR }}"
           echo "Job Variable: ${{ env.MY_JOB_VAR }}"
