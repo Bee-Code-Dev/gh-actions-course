@@ -10,9 +10,16 @@ on:
         default: false
         description: "Enable debug mode"
 
+env:
+  MY_WORKFLOW_VAR: "WORKFLOW"
+  MY_OVERRITTEN_VAR: "OVERRIDDEN"
+
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: "VARIABLE"
+      MY_OVERRITTEN_VAR: "OVERRIDDEN 2"
 
     steps:
       - name: Display information
@@ -29,3 +36,14 @@ jobs:
       - name: Retrive variables
         run: |
           echo "Variable value: ${{ vars.MY_VAR }}"
+      - name: Display environment variables
+        env:
+           : "OVERRIDDEN 3"
+        run: |
+          echo "Workflow Variable: ${{ env.MY_WORKFLOW_VAR }}"
+          echo "Job Variable: ${{ env.MY_JOB_VAR }}"
+          echo "Overridden Variable: ${{ env.MY_OVERRITTEN_VAR }}"
+      - name: Print env variables
+        run: |
+          echo "Workflow Variable: ${{ env.MY_WORKFLOW_VAR }}"
+          echo "Environment Variables: ${{ env.MY_OVERRITTEN_VAR }}"
