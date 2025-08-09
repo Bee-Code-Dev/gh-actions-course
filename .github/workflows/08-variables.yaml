@@ -30,3 +30,10 @@ jobs:
           OVERWRITTEN: "STEP"
         run: |
           echo "Overwritten env var: $OVERWRITTEN"
+
+  echo2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print env overriten variables
+        run: |
+          echo "Overwritten env var: $OVERWRITTEN"
