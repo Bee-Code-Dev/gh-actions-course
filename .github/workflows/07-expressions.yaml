@@ -8,6 +8,10 @@ on:
         type: boolean
         default: false
         description: "Enable debug mode"
+      test:
+        type: boolean
+        default: false
+        description: "Run test"
 
 jobs:
   echo:
@@ -25,3 +29,6 @@ jobs:
         run: echo "This workflow was triggered from the main branch."
       - name: 'Greeting'
         run: echo "Hello, ${{ github.actor }}! Welcome to the workflow."
+      - name: "Run test"
+        if: ${{inputs.test}}
+        run: echo "Run all test by ${{github.actor}}"
