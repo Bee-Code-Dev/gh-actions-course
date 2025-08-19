@@ -41,7 +41,7 @@ jobs:
         id: cache
         with:
           path: 13-caching/react-app/node_modules
-          key: ${{ needs.install-deps.outputs.deps-cache-key }}
+          key: ${{ steps.cache-key.outputs.CACHE_KEY }}
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'hit'
         run: npm ci
@@ -59,12 +59,7 @@ jobs:
         with:
           node-version: ${{inputs.node-version}}
       - name: Download cached dependencies
-        id: cache-key
-        run: |
-          echo "CACHE_KEY=deps-node-modeules-${{hashFiles('13-caching/react-app/package-lock.json')}}"
-      - name: Download cached dependencies
         uses: actions/cache@v3
-        if: ${{inputs.use-cache}}
         id: cache
         with:
           path: 13-caching/react-app/node_modules
@@ -79,8 +74,6 @@ jobs:
     defaults:
       run:
         working-directory: 13-caching/react-app
-    outputs:
-      deps-cache-key: ${{ steps.cache-key.outputs.CACHE_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -88,10 +81,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{inputs.node-version}}
-      - name: Calculate cache key
-        id: cache-key
-        run: |
-          echo "CACHE_KEY=deps-node-modeules-${{hashFiles('13-caching/react-app/package-lock.json')}}"
       - name: Download cached dependencies
         uses: actions/cache@v3
         id: cache
