@@ -27,17 +27,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: ${{inputs.node-version}}
       - name: Calculate cache key
         id: cache-key
         run: |
-          echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}" >> "$GITHUB_OUTPUT"
+          echo "CACHE_KEY=deps-node-modules-${{hashFiles('13-caching/react-app/package-lock.json')}}"
       - name: Download cached dependencies
         uses: actions/cache@v3
-        if: ${{ inputs.use-cache }}
+        if: ${{inputs.use-cache}}
         id: cache
         with:
           path: 13-caching/react-app/node_modules
@@ -54,12 +54,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: ${{inputs.node-version}}
       - name: Download cached dependencies
         uses: actions/cache@v3
+        if: ${{inputs.use-cache}}
         id: cache
         with:
           path: 13-caching/react-app/node_modules
@@ -77,10 +78,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: ${{inputs.node-version}}
+      - name: Calculate cache key
+        id: cache-key
+        run: |
+          echo "CACHE_KEY=deps-node-modules-${{hashFiles('13-caching/react-app/package-lock.json')}}"
       - name: Download cached dependencies
         uses: actions/cache@v3
         id: cache
