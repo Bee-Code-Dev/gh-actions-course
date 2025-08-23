@@ -32,3 +32,25 @@ jobs:
       - name: Echo vars
         run: |
           echo "Deploying prod"
+  deploy-production-frontend:
+    runs-on: ubuntu-latest
+    needs:
+      - e2e-test
+    environment: prod
+    env:
+      my-env-variable: ${{vars.MY_ENV_VALUE || 'default value'}}
+    steps:
+      - name: Echo vars
+        run: |
+          echo "Deploying prod frontend"
+  deploy-production-backend:
+    runs-on: ubuntu-latest
+    needs:
+      - e2e-test
+    environment: prod
+    env:
+      my-env-variable: ${{vars.MY_ENV_VALUE || 'default value'}}
+    steps:
+      - name: Echo vars
+        run: |
+          echo "Deploying prod backend"
