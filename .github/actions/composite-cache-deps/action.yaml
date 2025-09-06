@@ -27,10 +27,10 @@ runs:
       uses: actions/cache@v3
       with:
         path: ${{inputs.working-dir}}
-        key: ${{ runner.os }}-node-${{hashFiles(format('{0}/{1}', inputs.working-dir, 'packages-lock.json'))}}
+        key: ${{ runner.os }}-node-${{inputs.target-env}}-${{hashFiles(format('{0}/{1}', inputs.working-dir, 'packages-lock.json'))}}
     - name: Install dependecies
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        npm ci
+        ${{ inputs.target-env == 'dev' && 'npm ci' || 'npm ci --omit=dev' }}
       shell: bash
       working-directory: ${{inputs.working-dir}}
