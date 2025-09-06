@@ -23,7 +23,7 @@ runs:
       uses: actions/cache@v3
       with:
         path: ${{inputs.working-dir}}
-        key: ${{ runner.os }}-node-${{ hashFiles(inputs.working-dir + '/packages-lock.json') }}
+        key: ${{ runner.os }}-node-${{hasFiles('${{inputs.working-dir}}/packages-lock.json')}}
     - name: Install dependecies
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
