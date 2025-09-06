@@ -10,6 +10,10 @@ inputs:
     description: The working directory
     default: '.'
     required: false
+  target-env:
+    description: The target environment
+    default: dev
+    required: false
 
 runs:
   using: composite
