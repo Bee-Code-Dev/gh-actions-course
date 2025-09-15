@@ -1,5 +1,5 @@
 const core = require("@actions/core");
-const { exec } = require("@actions/exec");
+const exec = require("@actions/exec");
 
 const validateBranchName = ({ branchName }) => /^[a-zA-Z0-9-_\.\/]+$/.test(branchName);
 const valdiateDirectoryName = ({ directoryName }) => /^[a-zA-Z0-9-_\-\/]+$/.test(directoryName);
