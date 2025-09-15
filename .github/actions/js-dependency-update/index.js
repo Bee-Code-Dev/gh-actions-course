@@ -1,5 +1,5 @@
 const core = require("@actions/core");
-const exec = require("@actions/exec");
+const { exec, getExecOutput } = require("@actions/exec");
 
 const validateBranchName = ({ branchName }) => /^[a-zA-Z0-9-_\.\/]+$/.test(branchName);
 const valdiateDirectoryName = ({ directoryName }) => /^[a-zA-Z0-9-_\-\/]+$/.test(directoryName);
@@ -32,7 +32,7 @@ async function run() {
 
   await exec(`npm update`, [], { cwd: workingDirectory });
 
-  const gitStatus = await exec.getExecOutput(`git status -s package*.json`, [], { cwd: workingDirectory });
+  const gitStatus = await getExecOutput(`git status -s package*.json`, [], { cwd: workingDirectory });
   if (gitStatus.stdout.length > 0) {
     core.info(`[js-dependency-update]: There are updates available`);
   } else {
