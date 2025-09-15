@@ -1,6 +1,25 @@
 name: Update NPM Dependencies
 description: Update NPM Dependencies if there are not updated
 
+inputs:
+  base-branch:
+    description: Base branch for to the dependecy update checks
+    required: true
+  target-branch:
+    description: Target branch to create the PR is created
+    default: update-dependencies
+    required: false
+  working-directory:
+    description: Working directory to run the action
+    default: .
+    required: true
+  gh-token:
+    description: GitHub token to use for the action
+    required: true
+  debug:
+    description: Enable debug mode
+    default: 'false'
+
 runs:
   using: node20
   main: index.js
