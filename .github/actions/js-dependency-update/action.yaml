@@ -5,8 +5,8 @@ inputs:
   base-branch:
     description: Base branch for to the dependecy update checks
     required: true
-  target-branch:
-    description: Target branch to create the PR is created
+  head-branch:
+    description: Head branch to create the PR is created
     default: update-dependencies
     required: false
   working-directory:
