@@ -14,6 +14,10 @@ inputs:
     description: The target environment
     default: dev
     required: false
+outputs:
+  installed-deps:
+    description: Whether the dependencies were installed or retrieved from cache
+    value: ${{ steps.cache.outputs.cache-hit != 'true' }}
 
 runs:
   using: composite
