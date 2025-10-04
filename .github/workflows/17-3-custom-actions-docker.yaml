@@ -8,7 +8,7 @@ on:
         default: 'https://www.google.com'
         options:
           - 'https://www.google.com'
-          - 'https://www.github.com'
+          - 'https://www.github-ivalid-url-unreachable-never-used.com'
           - 'thisurldoesnotexist12345'
         type: choice
       timeout:
