@@ -19,7 +19,9 @@ inputs:
   debug:
     description: Enable debug mode
     default: 'false'
-
+outputs:
+  updates-available:
+    description: Whether there are dependency updates available
 runs:
   using: node20
   main: index.js

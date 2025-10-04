@@ -60,7 +60,9 @@ async function run() {
   await exec(`npm update`, [], { ...commonExcecOptions });
 
   const gitStatus = await getExecOutput(`git status -s package*.json`, [], { ...commonExcecOptions });
+  let updatesAvailable = false;
   if (gitStatus.stdout.length > 0) {
+    updatesAvailable = true;
     logger.debug(`There are updates available`);
     logger.debug(`Setting up git...`);
     await gitHubSetup();
@@ -92,6 +94,8 @@ async function run() {
   } else {
     logger.info(`No updates at this point in time`);
   }
+  logger.info(`Settings updates-available output to ${updatesAvailable}`);
+  core.setOutput('updates-available', updatesAvailable);
 }
 
 run();
