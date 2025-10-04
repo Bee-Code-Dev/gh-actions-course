@@ -35,4 +35,4 @@ jobs:
           delay: ${{inputs.delay}}
       - name: Print custom action output
         run: |
-          echo "URL reachable: ${{ steps.ping-url.outputs.reachable }}"
+          echo "URL reachable: ${{ steps.ping-url.outputs.url-reachable }}"
