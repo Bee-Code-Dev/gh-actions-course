@@ -5,19 +5,14 @@ on:
     inputs:
       url:
         description: Base branch for to the dependecy update checks
-        default: 'https://www.google.com'
         options:
           - 'https://www.google.com'
           - 'https://www.github-ivalid-url-unreachable-never-used.com'
           - 'thisurldoesnotexist12345'
         type: choice
-      timeout:
-        description: Timeout in milliseconds
-        default: '5000'
-        type: string
       max-retries:
         description: Maximum number of retries
-        default: '5'
+        default: '10'
         required: false
       retry-interval:
         description: Interval between retries in milliseconds
@@ -35,6 +30,5 @@ jobs:
         uses: ./.github/actions/docker-ping-url
         with:
           url: ${{ inputs.url }}
-          timeout: ${{inputs.timeout}}
           max-retries: ${{inputs.max-retries}}
           retry-interval: ${{inputs.retry-interval}}

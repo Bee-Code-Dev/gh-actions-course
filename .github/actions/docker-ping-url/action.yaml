@@ -5,10 +5,6 @@ inputs:
   url: # INPUT_URL
     description: The URL to ping
     required: true
-  timeout: # INPUT_TIMEOUT
-    description: Timeout in milliseconds
-    default: '5000'
-    required: false
   max-retries: # INPUT_MAX_RETRIES
     description: Maximum number of retries
     default: '10'
