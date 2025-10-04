@@ -13,6 +13,9 @@ inputs:
     description: Interval between retries in milliseconds
     default: '5'
     required: false
+outputs:
+  url-reachable: # OUTPUT_REACHABLE
+    description: Whether the URL is reachable
 runs:
   using: 'docker'
   image: 'Dockerfile'

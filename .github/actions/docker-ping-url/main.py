@@ -2,6 +2,10 @@ import os
 import requests
 import time
 
+def set_output(file_path, key, value):
+    with open(file_path, "a") as f:
+        print(f"{key}={value}", file=f)
+
 def ping_url(url, max_retries, retry_interval):
     trials = 0
 
@@ -24,9 +28,9 @@ def run():
     web_url = os.getenv("INPUT_URL")
     max_retries = int(os.getenv("INPUT_MAX_RETRIES"))
     delay = int(os.getenv("INPUT_DELAY"))
-    websi_reachable = ping_url(web_url, max_retries, delay)
-
-    if not websi_reachable:
+    website_reachable = ping_url(web_url, max_retries, delay)
+    set_output(os.getenv("GITHUB_OUTPUT"), "url-reachable", website_reachable)
+    if not website_reachable:
         raise Exception(f"Website {web_url} is malformed or unreachable after {max_retries} attempts.")
 
     print(f"Website {web_url} is reachable.")
