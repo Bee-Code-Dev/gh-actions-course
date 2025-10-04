@@ -1,0 +1,22 @@
+name: Ping URL
+description: Ping a URL and check if it's reachable
+
+inputs:
+  url:
+    description: The URL to ping
+    required: true
+  timeout:
+    description: Timeout in milliseconds
+    default: '5000'
+    required: false
+  max-retries:
+    description: Maximum number of retries
+    default: '10'
+    required: false
+  retry-interval:
+    description: Interval between retries in milliseconds
+    default: '5'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
