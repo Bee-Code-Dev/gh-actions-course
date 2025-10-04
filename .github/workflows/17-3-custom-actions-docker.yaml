@@ -1,0 +1,21 @@
+name: 17 - 2 - Custom actions - Docker
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Base branch for to the dependecy update checks
+        default: 'https://www.google.com'
+        type: string
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  ping-url:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ping URL
+        uses: ./.github/actions/docker-ping-url
+        with:
+          url: ${{ inputs.url }}
