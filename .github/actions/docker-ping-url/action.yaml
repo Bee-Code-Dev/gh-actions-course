@@ -5,11 +5,11 @@ inputs:
   url: # INPUT_URL
     description: The URL to ping
     required: true
-  max-retries: # INPUT_MAX_RETRIES
+  max_retries: # INPUT_MAX_RETRIES
     description: Maximum number of retries
     default: '10'
     required: false
-  retry-interval: # INPUT_RETRY_INTERVAL
+  delay: # INPUT_DELAY
     description: Interval between retries in milliseconds
     default: '5'
     required: false

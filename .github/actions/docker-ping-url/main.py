@@ -23,8 +23,8 @@ def ping_url(url, max_retries, retry_interval):
 def run():
     web_url = os.getenv("INPUT_URL")
     max_retries = int(os.getenv("INPUT_MAX_RETRIES"))
-    retry_interval = int(os.getenv("INPUT_RETRY_INTERVAL"))
-    websi_reachable = ping_url(web_url, max_retries, retry_interval)
+    delay = int(os.getenv("INPUT_DELAY"))
+    websi_reachable = ping_url(web_url, max_retries, delay)
 
     if not websi_reachable:
         raise Exception(f"Website {web_url} is malformed or unreachable after {max_retries} attempts.")
