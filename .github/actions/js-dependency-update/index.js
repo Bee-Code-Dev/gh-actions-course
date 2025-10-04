@@ -45,7 +45,7 @@ async function run() {
       ...commonExcecOptions
     });
     await exec(`git add package.json package-lock.json`, [], { ...commonExcecOptions });
-    await exec(`git commit -m "chore: update js dependencies"`, [], { ...commonExcecOptions });
+    await exec(`git commit -m "chore: update NPM dependencies"`, [], { ...commonExcecOptions });
     await exec(`git push --set-upstream origin ${targetBranch} --force`, [], { ...commonExcecOptions });
     const octokit = github.getOctokit(ghToken);
     try {
@@ -57,6 +57,7 @@ async function run() {
         base: baseBranch,
         head: targetBranch,
       });
+      core.error(`[js-dependency-update]: Created PR successfully`);
     } catch (error) {
       core.error(`[js-dependency-update]: Could not create PR, it might already exist`);
       core.setFailed(error.message);
