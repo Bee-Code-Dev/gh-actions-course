@@ -1,0 +1,19 @@
+name: 19 - 1 - Managing Concurrency
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+jobs:
+  ping-url:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ping URL
+        id: ping-url
+        uses: ./.github/actions/docker-ping-url
+        with:
+          url: https://www.invalid-url-google-askdjfhaskdjf.com
+          max_retries: 20
+          delay: 5
