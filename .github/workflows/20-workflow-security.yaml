@@ -19,3 +19,19 @@ jobs:
           echo "Pull request is not a feature"
           exit 1
           fi
+  safer-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run Unsafe PR Check
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ $TITLE =~ ^feat ]]; then
+          echo "Pull request is a feature"
+          exit 0
+          else
+          echo "Pull request is not a feature"
+          exit 1
+          fi
