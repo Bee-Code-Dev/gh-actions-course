@@ -1,1 +1,3 @@
-Respository contain all examples from gh-action course
+Respository contain all examples from gh-action course.
+
+Other task
